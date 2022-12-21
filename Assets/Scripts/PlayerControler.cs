@@ -1,15 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerControler : MonoBehaviour
 {
     public GameObject donut;
     public GameObject knife;
 
+
     Rigidbody rb;
 
     bool hasLanded;
+
+    [SerializeField]
+    GameObject butn1, butn2;
+
+    [SerializeField]
+    AudioSource audio, victory;
 
     [SerializeField]
     private float jumpForce;
@@ -25,9 +33,6 @@ public class PlayerControler : MonoBehaviour
 
     Transform pivotPoint;
 
-    float z;
-
-    int remainingJump = 5;
 
     private void Awake()
     {
@@ -42,20 +47,16 @@ public class PlayerControler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || Input.GetKey(KeyCode.Space))
         {
-            //Jump
-            if (remainingJump > 0)
-            {
+          
                 moveAndRotate();
-                TurnX();
-                remainingJump--;
-            }
+               
             
         }
         if (!hasLanded)
         {
-            Quaternion deltaRotation = Quaternion.Euler(new Vector3(0, 0, -50)* Time.fixedDeltaTime);
+            Quaternion deltaRotation = Quaternion.Euler(new Vector3(0, 0, -rotationSpeed) * Time.fixedDeltaTime);
             rb.MoveRotation(rb.rotation * deltaRotation);
         }
 
@@ -66,15 +67,37 @@ public class PlayerControler : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent(out ISlice clickableObject))
         {
-            clickableObject.getSlice();
+            audio.Play();
+            clickableObject.getSlice(this);
         }
 
 
         if (collision.gameObject.tag == "Ground")
         {
-            remainingJump = 5;
+           
             Debug.Log("NASSSSAO JE!!!!");
             hasLanded = true;
+            rb.Sleep();
+            GameManager.instance.menu.SetActive(true);
+            butn1.SetActive(false);
+            butn2.SetActive(true);
+
+            //GameManager.instance.startGameFromBegin();
+
+        }
+
+        if(collision.gameObject.tag == "Fin")
+        {
+           
+            victory.Play();
+            rb.Sleep();
+            rb.isKinematic = true;
+            butn1.SetActive(true);
+            butn2.SetActive(false);
+
+            GameManager.instance.menu.SetActive(true);
+           
+           
         }
     }
 
@@ -82,8 +105,10 @@ public class PlayerControler : MonoBehaviour
     {
         if(collision.gameObject.tag=="Ground")
         {
-            remainingJump = 5;
+            
             hasLanded = false;
+            //Application.Quit();
+
         }
     }
 
@@ -93,9 +118,13 @@ public class PlayerControler : MonoBehaviour
         hasLanded = false;
         rb.AddForce(Vector3.forward * moveForce+ Vector3.up * jumpForce, ForceMode.Impulse);
     }
-    public void TurnX()
-    {
-        z = -1;
-    }
+
+
+
+
+
+
+
+
 
 }

@@ -1,13 +1,44 @@
 {
-    "m_SelectedDeviceId": "",
+    "m_SelectedDeviceId": "K5J0220929004802",
     "m_SelectedPackage": {
-        "deviceId": "",
-        "name": "",
-        "processId": 0,
+        "deviceId": "K5J0220929004802",
+        "name": "com.DefaultCompany.CookiesCutter",
+        "processId": 4117,
         "exited": false
     },
     "m_SelectedPriority": 0,
-    "m_KnownPackagesForSerialization": [],
+    "m_KnownPackagesForSerialization": [
+        {
+            "deviceId": "K5J0220929004802",
+            "name": "com.DefaultCompany.CookiesCutter",
+            "processId": 18462,
+            "exited": true
+        },
+        {
+            "deviceId": "K5J0220929004802",
+            "name": "com.huawei.android.launcher",
+            "processId": 2801,
+            "exited": false
+        },
+        {
+            "deviceId": "K5J0220929004802",
+            "name": "com.DefaultCompany.CookiesCutter",
+            "processId": 1459,
+            "exited": false
+        },
+        {
+            "deviceId": "K5J0220929004802",
+            "name": "com.DefaultCompany.CookiesCutter",
+            "processId": 1402,
+            "exited": false
+        },
+        {
+            "deviceId": "K5J0220929004802",
+            "name": "com.DefaultCompany.CookiesCutter",
+            "processId": 4117,
+            "exited": false
+        }
+    ],
     "m_Tags": {
         "m_Entries": [
             {
@@ -41,9 +72,20 @@
         ]
     },
     "m_MemoryViewerState": {
-        "MemoryWindowHeight": 0.0,
-        "MemoryWindowWidth": 0.0,
-        "MemoryTypeEnabled": [],
+        "MemoryWindowHeight": 300.0,
+        "MemoryWindowWidth": 170.0,
+        "MemoryTypeEnabled": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+        ],
         "MemoryGroup": 2,
         "Behavior": 0
     },

@@ -1,4 +1,4 @@
 public interface ISlice
 {
-    void getSlice();
+    void getSlice(PlayerControler player);
 }

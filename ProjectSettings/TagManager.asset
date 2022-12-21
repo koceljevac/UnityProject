@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Donut
+  - Fin
   layers:
   - Default
   - TransparentFX
@@ -13,8 +14,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - PlayerLayer
+  - Presecen Predmet
   - 
   - 
   - 
@@ -42,4 +43,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player Layer
+    uniqueID: 3109494765
     locked: 0

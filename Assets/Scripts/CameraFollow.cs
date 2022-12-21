@@ -4,16 +4,25 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    [SerializeField]private Transform cameraTarget;
-    [SerializeField] private float sSpeed = 10.0f;
-    [SerializeField] private Vector3 dist;
-    [SerializeField] private Transform lookAtTarget;
+    //The Target object
+    public Transform targetObject;
 
-    private void FixedUpdate()
+    //Default distance beetwen the target and the player
+    public Vector3 cameraOffset;
+
+    //Smooth factor will use in Camera rotaion
+    public float smoothFactor = 0.5f;
+
+    // Start is called before the first frame update
+    void Start()
     {
-        Vector3 dPos = cameraTarget.position + dist;
-        Vector3 sPos = Vector3.Lerp(transform.position, dPos, sSpeed * Time.deltaTime);
-        transform.position = sPos;
-        transform.LookAt(lookAtTarget.position);
+        cameraOffset = transform.position - targetObject.transform.position;   
+    }
+
+    // Update is called once per frame
+    void LateUpdate()
+    {
+        Vector3 newPosition = targetObject.transform.position + cameraOffset;
+        transform.position = Vector3.Slerp(transform.position, newPosition, smoothFactor);
     }
 }
